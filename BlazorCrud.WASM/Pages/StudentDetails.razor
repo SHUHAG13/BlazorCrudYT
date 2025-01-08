@@ -23,6 +23,7 @@
                             <th scope="col">Mobile</th>
                             <th scope="col">Email</th>
                             <th scope="col">Roll Num</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +37,9 @@
                                 <td>@item.MobileNumber</td>
                                 <td>@item.Email</td>
                                 <td>@item.RollNumber</td>
+                                <td>
+                                    <button onclick="@(()=>DeleteStudentAsync(item.Id))" class="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                         }
 
@@ -55,6 +59,10 @@
     protected override async  Task OnInitializedAsync()
     {
         Student = await http.GetFromJsonAsync<IEnumerable<Student>>("https://localhost:7297/api/Student");
+    }
+    private async Task DeleteStudentAsync(int Id)
+    {
+        await http.DeleteAsync("https://localhost:7297/api/Student/" + Id);
     }
 
 }
