@@ -1,0 +1,60 @@
+﻿@page "/studentdetails"
+@using BlazorCrud.Library
+@inject HttpClient http 
+<h3>Student Details</h3>
+<div class=" container">
+	<div class="row">
+		<div class=" col-10">
+            @if(Student==null)
+            {
+                <h2>
+                    Loading............
+                </h2>
+            }
+
+            else
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Father Name</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Roll Num</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Student)
+                        {
+                            <tr>
+                                <td scope="row">@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.FatherName</td>
+                                <td>@item.MobileNumber</td>
+                                <td>@item.Email</td>
+                                <td>@item.RollNumber</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            }
+
+
+		</div>
+	</div>
+
+</div>
+
+@code {
+    public IEnumerable<Student>Student{ get; set; }
+
+    protected override async  Task OnInitializedAsync()
+    {
+        Student = await http.GetFromJsonAsync<IEnumerable<Student>>("https://localhost:7297/api/Student");
+    }
+
+}
