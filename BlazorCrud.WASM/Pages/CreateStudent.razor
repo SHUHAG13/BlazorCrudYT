@@ -1,0 +1,46 @@
+﻿@page "/createstudent"
+@using BlazorCrud.Library
+@inject NavigationManager nav
+@inject HttpClient http
+<h3>Create Student</h3>
+<div class="container">
+  <div class="row">
+	  <div class="col-8">
+			<EditForm Model="Student" OnValidSubmit="CreateStudentMethod">
+			  <div class="form-group">
+				  <label class="form-label">Name</label>
+				  <InputText class="form-control" @bind-Value=Student.Name></InputText>
+			  </div>
+			  <div class="form-group">
+				 <label class="form-label">Father Name</label>
+				 <InputText class="form-control" @bind-Value=Student.FatherName></InputText>
+			  </div>
+			  <div class="form-group">
+				  <label class="form-label">Mobile Number</label>
+				  <InputText class="form-control" @bind-Value=Student.MobileNumber></InputText>
+			  </div>
+			  <div class="form-group">
+				  <label class="form-label">Email</label>
+				  <InputText class="form-control" @bind-Value=Student.Email></InputText>
+			  </div>
+			  <div class="form-control">
+				  <label class="form-label">Roll Number</label>
+				 <InputNumber class="form-control" @bind-Value=Student.RollNumber></InputNumber>
+			  </div>
+				<button class="btn btn-success mt-4">Save Student</button>
+		  </EditForm>
+	  </div>
+
+  </div>
+</div>
+
+@code {
+	Student Student = new();
+
+	private void CreateStudentMethod()
+	{
+		http.PostAsJsonAsync("https://localhost:7297/api/Student", Student);
+		nav.NavigateTo("/studentdetails");
+	}
+
+}
