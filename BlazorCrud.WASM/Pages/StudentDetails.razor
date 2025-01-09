@@ -1,5 +1,6 @@
 ﻿@page "/studentdetails"
 @using BlazorCrud.Library
+@inject NavigationManager Nav
 @inject HttpClient http 
 <h3>Student Details</h3>
 <div class=" container">
@@ -14,7 +15,7 @@
 
             else
             {
-                <table class="table table-bordered">
+                <table class="table table-active">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -23,7 +24,7 @@
                             <th scope="col">Mobile</th>
                             <th scope="col">Email</th>
                             <th scope="col">Roll Num</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" colspan="2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,9 @@
                                 <td>@item.RollNumber</td>
                                 <td>
                                     <button onclick="@(()=>DeleteStudentAsync(item.Id))" class="btn btn-danger">Delete</button>
+                                </td>
+                                <td>
+                                    <button onclick="@(()=>Nav.NavigateTo($"editstudents/{item.Id}"))" class="btn btn-primary">Edit</button>
                                 </td>
                             </tr>
                         }
