@@ -1,7 +1,158 @@
 ﻿@page "/"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+        }
 
-<PageTitle>Home</PageTitle>
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<h1>Hello, world!</h1>
+            header .logo {
+                font-size: 1.8em;
+                font-weight: bold;
+            }
 
-Welcome to your new app.
+            header nav a {
+                color: white;
+                margin: 0 15px;
+                text-decoration: none;
+                font-size: 1.1em;
+            }
+
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .search-bar {
+            width: 60%;
+            padding: 10px;
+            font-size: 1.2em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-btn {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 1.2em;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .search-btn:hover {
+                background-color: #2980b9;
+            }
+
+        .categories, .new-arrivals, .featured-books {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+
+        .category, .book {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            width: 200px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+            .category img, .book img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            .category h3, .book h3 {
+                font-size: 1.2em;
+                margin-top: 10px;
+            }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+            .footer a {
+                color: #3498db;
+                text-decoration: none;
+            }
+
+                .footer a:hover {
+                    text-decoration: underline;
+                }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Library XYZ</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Catalog</a>
+            <a href="#">My Account</a>
+            <a href="#">Help</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <!-- Popular Categories Section -->
+    <div class="categories">
+        <div class="category">
+            <img src="https://via.placeholder.com/200x150?text=Fiction" alt="Fiction">
+            <h3>Fiction</h3>
+        </div>
+        <div class="category">
+            <img src="https://via.placeholder.com/200x150?text=Science" alt="Science">
+            <h3>Science</h3>
+        </div>
+    </div>
+
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>© 2025 Library XYZ. All rights reserved.</p>
+        <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+    </div>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        function searchCatalog() {
+            const searchQuery = document.getElementById("searchInput").value;
+            if (searchQuery.trim() === "") {
+                alert("Please enter a search term!");
+            } else {
+                alert("Searching for: " + searchQuery);
+                // Here you can integrate with backend API to search the catalog
+            }
+        }
+    </script>
+
+</body>
+</html>

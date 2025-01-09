@@ -15,7 +15,7 @@
 
             else
             {
-                <table class="table table-active">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -24,7 +24,7 @@
                             <th scope="col">Mobile</th>
                             <th scope="col">Email</th>
                             <th scope="col">Roll Num</th>
-                            <th scope="col" colspan="2">Action</th>
+                            <th scope="col" colspan="3">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,10 +39,17 @@
                                 <td>@item.Email</td>
                                 <td>@item.RollNumber</td>
                                 <td>
-                                    <button onclick="@(()=>DeleteStudentAsync(item.Id))" class="btn btn-danger">Delete</button>
+                                <td>
+                                    <button @onclick="NavigateToCreateStudent" class="btn btn-success">Add</button>
+                                </td>
+
+                                </td>
+                                
+                                <td>
+                                    <button onclick="@(()=>Nav.NavigateTo($"editstudents/{item.Id}"))" class="btn btn-primary"> Update</button>
                                 </td>
                                 <td>
-                                    <button onclick="@(()=>Nav.NavigateTo($"editstudents/{item.Id}"))" class="btn btn-primary">Edit</button>
+                                    <button onclick="@(()=>DeleteStudentAsync(item.Id))" class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         }
@@ -67,6 +74,11 @@
     private async Task DeleteStudentAsync(int Id)
     {
         await http.DeleteAsync("https://localhost:7297/api/Student/" + Id);
+        Nav.NavigateTo("/studentdetails", true);
+    }
+    private void NavigateToCreateStudent()
+    {
+        Nav.NavigateTo("/createstudent");
     }
 
 }

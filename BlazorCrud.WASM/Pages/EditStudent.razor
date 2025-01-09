@@ -45,7 +45,8 @@
 	private void UpdateStudentMethod()
 	{
 		http.PutAsJsonAsync<Student>($"https://localhost:7297/api/Student/{Student.Id}",Student);
-		Nav.NavigateTo("studentdetails",true);
+		Nav.NavigateTo("/studentdetails");
+
 	}
 
 }
